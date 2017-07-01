@@ -1,2 +1,2 @@
-# winston-bot
+# connor-bot
 Testing out the bot framework

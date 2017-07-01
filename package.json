@@ -1,0 +1,26 @@
+{
+  "name": "connor-bot",
+  "version": "1.0.0",
+  "description": "Testing out the bot framework",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dylan8902/connor-bot.git"
+  },
+  "keywords": [
+    "bot-framework"
+  ],
+  "author": "Dylan Jones",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dylan8902/connor-bot/issues"
+  },
+  "homepage": "https://github.com/dylan8902/connor-bot#readme",
+  "dependencies": {
+    "botbuilder": "^3.8.4",
+    "restify": "^5.0.0"
+  }
+}
