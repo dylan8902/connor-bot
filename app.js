@@ -13,11 +13,23 @@ var connector = new builder.ChatConnector({
     appPassword: process.env.MICROSOFT_APP_PASSWORD
 });
 
+// Serve some T and Cs
+server.get('/privacy-terms', restify.serveStatic({
+  directory: __dirname,
+  file: 'privacy-terms.html'
+}));
+
 // Serve an index page
-server.get('/', function (req, res, next) {
-  res.send('Hello World, I\'m Connor!');
-  return next();
-});
+server.get('/', restify.serveStatic({
+  directory: __dirname,
+  file: 'index.html'
+}));
+
+// Serve image
+server.get('/connor_240.png', restify.serveStatic({
+  directory: './images',
+  file: 'connor_240.png'
+}));
 
 // Listen for messages from users
 server.post('/api/messages', connector.listen());
