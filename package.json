@@ -21,6 +21,6 @@
   "homepage": "https://github.com/dylan8902/connor-bot#readme",
   "dependencies": {
     "botbuilder": "^3.8.4",
-    "restify": "^5.0.0"
+    "restify": "^4.3.0"
   }
 }
