@@ -32,18 +32,29 @@ var bot = new builder.UniversalBot(connector, [
     }
   },
   function (session, results) {
-    session.send('%s said: %s', session.userData.name, session.message.text);
+    var response = session.userData.name+ ' said: ' + session.message.text;
+    session.say(response, response, {
+      inputHint: builder.InputHint.acceptingInput
+    });
   }
 ]);
 
 // Collect user information
 bot.dialog('profile', [
   function (session) {
-    builder.Prompts.text(session, 'Hi! I\'mConnor, what is your name?');
+    var question = 'Hi! I\'m Connor, what is your name?';
+    builder.Prompts.text(session, question, {
+      speak: question,
+      retrySpeak: question,
+      inputHint: builder.InputHint.expectingInput
+    });
   },
   function (session, results) {
     session.userData.name = results.response;
-    session.send('Hello %s!', session.userData.name);
+    var response = 'Hello ' + session.userData.name;
+    session.say(response, response, {
+      inputHint: builder.InputHint.acceptingInput
+    });
     session.endDialog();
   }
 ]);

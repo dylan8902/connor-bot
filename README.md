@@ -34,3 +34,17 @@ https://teams.microsoft.com/l/chat/0/0?users=28:e44e2e7a-021b-4d61-9d87-f678a97c
 ### Email
 I have configured email integration:  
 [theconnorbot@outlook.com](mailto://theconnorbot@outlook.com)
+
+
+### Twilio
+I have configured Twilio integration by creating a TwiML app:  
+https://www.twilio.com/console/sms/dev-tools/twiml-apps/AP4d3fa032eb617ecadb6e3f3812e3aa0b  
+and assigning it to the number:
+[+441422400729](tel://+441422400729)
+
+
+### Cortana
+I have configured the bot to be a Cortana skill with 'Connor' as it's invocation. Members of the test group should have access:  
+https://developer.microsoft.com/en-us/cortana/signup/groupconsent/d00bc1cf-d549-49f5-b96f-dd53a1355249
+
+I have not got it yet to work
