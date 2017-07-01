@@ -13,16 +13,37 @@ var connector = new builder.ChatConnector({
     appPassword: process.env.MICROSOFT_APP_PASSWORD
 });
 
-// Listen for messages from users
-server.post('/api/messages', connector.listen());
-
-// Serve an index
+// Serve an index page
 server.get('/', function (req, res, next) {
-  res.send("Hello World, I'm Connor!");
+  res.send('Hello World, I\'m Connor!');
   return next();
 });
 
-// Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
-var bot = new builder.UniversalBot(connector, function (session) {
-    session.send("You said: %s", session.message.text);
-});
+// Listen for messages from users
+server.post('/api/messages', connector.listen());
+
+// The bot
+var bot = new builder.UniversalBot(connector, [
+  function (session, args, next) {
+    if (!session.userData.name) {
+      session.beginDialog('profile');
+    } else {
+      next();
+    }
+  },
+  function (session, results) {
+    session.send('%s said: %s', session.userData.name, session.message.text);
+  }
+]);
+
+// Collect user information
+bot.dialog('profile', [
+  function (session) {
+    builder.Prompts.text(session, 'Hi! I\'mConnor, what is your name?');
+  },
+  function (session, results) {
+    session.userData.name = results.response;
+    session.send('Hello %s!', session.userData.name);
+    session.endDialog();
+  }
+]);
