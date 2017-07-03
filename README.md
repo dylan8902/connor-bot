@@ -43,3 +43,7 @@ and assigning it to the number:
 ### Cortana
 I have configured the bot to be a Cortana skill with 'Connor' as it's invocation. I have not got it to work yet. Members of the test group should have access:  
 https://developer.microsoft.com/en-us/cortana/signup/groupconsent/d00bc1cf-d549-49f5-b96f-dd53a1355249
+
+### Telegram
+I have configured integration with a bot on Telegram:  
+https://web.telegram.org/#/im?p=@theconnorbot
