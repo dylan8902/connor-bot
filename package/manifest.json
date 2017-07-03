@@ -1,0 +1,38 @@
+{
+    "$schema": "https://statics.teams.microsoft.com/sdk/v1.0/manifest/MicrosoftTeams.schema.json", 
+    "manifestVersion": "1.0",
+    "version": "1.0.0",
+    "id": "e44e2e7a-021b-4d61-9d87-f678a97cfc14",
+    "packageName": "com.samples.samplebot",
+    "developer": {
+        "name": "Microsoft",
+        "websiteUrl": "https://www.microsoft.com",
+        "privacyUrl": "https://www.microsoft.com/privacy",
+        "termsOfUseUrl": "https://www.microsoft.com/termsofuse"
+    },
+    "name": {
+        "short": "Connor"
+    },
+    "description": {
+        "short": "Testing the bot framework",
+        "full": "Testing the bot framework out."
+    },
+    "icons": {
+        "outline": "connor20x20.png",
+        "color": "connor96x96.png"
+    },
+    "accentColor": "#1565C0",
+    "bots": [
+        {
+            "botId": "e44e2e7a-021b-4d61-9d87-f678a97cfc14",
+            "scopes": [
+                "team",
+                "personal"
+            ]
+        }
+    ],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ]
+}
