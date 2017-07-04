@@ -2,6 +2,7 @@ var restify = require('restify');
 var builder = require('botbuilder');
 var website = require('./website');
 var profile = require('./profile');
+var list = require('./list');
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -45,16 +46,33 @@ var bot = new builder.UniversalBot(connector, [
       response = Math.floor(Math.random() * 100).toString();
     } else if (text.match('weather')) {
       response = 'It\'s raining';
+    } else if (text.match('list')) {
+      // If there is no list, create an empty list
+      if (session.userData.list === undefined) {
+        session.userData.list = [];
+        response = undefined;
+        session.beginDialog('list');
+      } else if (text.match('add')) {
+        response = undefined;
+        session.beginDialog('list');
+      } else {
+        response = session.userData.list.toString();
+      }
     } else {
       console.log('unable to find any intent');
     }
 
-    // Send response
-    session.say(response, response, {
-      inputHint: builder.InputHint.acceptingInput
-    });
+    // Send response if there is one
+    if (response) {
+      session.say(response, response, {
+        inputHint: builder.InputHint.acceptingInput
+      });
+    }
   }
 ]);
 
 // Setup the profile dialog
-profile.ask(bot);
+profile.dialog(bot);
+
+// Setup the list dialog
+list.dialog(bot);

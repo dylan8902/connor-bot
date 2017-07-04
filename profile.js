@@ -1,7 +1,7 @@
 var builder = require('botbuilder');
 
 module.exports = {
-  ask: function (bot) {
+  dialog: function (bot) {
 
     // Collect user information
     bot.dialog('profile', [
