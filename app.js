@@ -32,8 +32,8 @@ var bot = new builder.UniversalBot(connector, [
     }
   },
   function (session, results) {
-    // Handle all text messages
-    var text = session.message.text;
+    // Handle all text messages as lowercase
+    var text = session.message.text.toLowerCase();
 
     // Default response if we cannot find any intents
     var response = session.userData.name + ' said: ' + text;
