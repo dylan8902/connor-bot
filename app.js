@@ -1,5 +1,6 @@
 var restify = require('restify');
 var builder = require('botbuilder');
+var website = require('./website');
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -13,23 +14,8 @@ var connector = new builder.ChatConnector({
     appPassword: process.env.MICROSOFT_APP_PASSWORD
 });
 
-// Serve some T and Cs
-server.get('/privacy-terms', restify.serveStatic({
-  directory: __dirname,
-  file: 'privacy-terms.html'
-}));
-
-// Serve an index page
-server.get('/', restify.serveStatic({
-  directory: __dirname,
-  file: 'index.html'
-}));
-
-// Serve image
-server.get('/connor_240.png', restify.serveStatic({
-  directory: './images',
-  file: 'connor_240.png'
-}));
+// Serve static website pages
+website.serve(server);
 
 // Listen for messages from users
 server.post('/api/messages', connector.listen());
