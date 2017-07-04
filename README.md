@@ -4,7 +4,12 @@ https://connor-bot.azurewebsites.net/
 https://dev.botframework.com/bots?id=connor
 
 ## What can it do?
-It can ask you for your name and repeat back what you say
+It will ask you for your name and then you can trigger one of the following intents:  
+- <b>Time</b>: Tell you the current date-time
+- <b>Random</b>: Tell you a random number between 0 and 100
+- <b>Weather</b>: Tell you it's raining
+
+Otherwise it will repeat back what you say
 
 ## Integrations
 I have tested the following integrations with the bot framework
@@ -47,3 +52,10 @@ https://developer.microsoft.com/en-us/cortana/signup/groupconsent/d00bc1cf-d549-
 ### Telegram
 I have configured integration with a bot on Telegram:  
 https://web.telegram.org/#/im?p=@theconnorbot
+
+## What could it do in the future?
+Current future intent ideas are:
+- Maintain lists for todo or shopping for example
+- Tell a joke
+- Train times
+- Pringles price
