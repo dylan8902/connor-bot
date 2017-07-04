@@ -34,14 +34,19 @@ var bot = new builder.UniversalBot(connector, [
   function (session, results) {
     // Handle all text messages
     var text = session.message.text;
+
     // Default response if we cannot find any intents
     var response = session.userData.name + ' said: ' + text;
 
     // Search for intents
     if (text.match('time')) {
       response = new Date().toLocaleString();
+    } else if (text.match('random')) {
+      response = Math.floor(Math.random() * 100).toString();
     } else if (text.match('weather')) {
       response = 'It\'s raining';
+    } else {
+      console.log('unable to find any intent');
     }
 
     // Send response
