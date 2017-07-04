@@ -1,6 +1,7 @@
 var restify = require('restify');
 var builder = require('botbuilder');
 var website = require('./website');
+var profile = require('./profile');
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -20,9 +21,10 @@ website.serve(server);
 // Listen for messages from users
 server.post('/api/messages', connector.listen());
 
-// The bot
+// Create the bot with some universal handlers
 var bot = new builder.UniversalBot(connector, [
   function (session, args, next) {
+    // If we do not know the user's name, ask using dialog
     if (!session.userData.name) {
       session.beginDialog('profile');
     } else {
@@ -30,29 +32,24 @@ var bot = new builder.UniversalBot(connector, [
     }
   },
   function (session, results) {
-    var response = session.userData.name+ ' said: ' + session.message.text;
+    // Handle all text messages
+    var text = session.message.text;
+    // Default response if we cannot find any intents
+    var response = session.userData.name + ' said: ' + text;
+
+    // Search for intents
+    if (text.match('time')) {
+      response = new Date().toLocaleString();
+    } else if (text.match('weather')) {
+      response = 'It\'s raining';
+    }
+
+    // Send response
     session.say(response, response, {
       inputHint: builder.InputHint.acceptingInput
     });
   }
 ]);
 
-// Collect user information
-bot.dialog('profile', [
-  function (session) {
-    var question = 'Hi! I\'m Connor, what is your name?';
-    builder.Prompts.text(session, question, {
-      speak: question,
-      retrySpeak: question,
-      inputHint: builder.InputHint.expectingInput
-    });
-  },
-  function (session, results) {
-    session.userData.name = results.response;
-    var response = 'Hello ' + session.userData.name;
-    session.say(response, response, {
-      inputHint: builder.InputHint.acceptingInput
-    });
-    session.endDialog();
-  }
-]);
+// Setup the profile dialog
+profile.ask(bot);
